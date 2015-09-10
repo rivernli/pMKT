@@ -1,0 +1,132 @@
+﻿
+.no {font-size:12pt}
+
+A:LINK	{
+	color:#039;
+	text-decoration:none;
+	}
+A:VISITED{
+	color:#039;
+	text-decoration:none;
+	}
+A:HOVER{
+	color:#F60;
+	text-decoration:none;
+	}
+
+BODY 	{
+	MARGIN-TOP:3px;
+	margin-left:5px;
+	margin-right:5px;
+	}
+BODY, TD, span	{
+	color:#000;
+	font:13px Verdana,microsoft sans serif;
+	}
+span {font-size:13px;}
+#mmm {padding:3px 0px;}
+
+div#footer { position:absolute; bottom:0; left:0;width:100%; background-color:#cccccc; text-align:center; font:10px #555 bold;}
+
+.MasterTile {font-size:17px; color:#333333; font-weight:bold;}
+.standardTable {border-color:#cccccc; border-collapse:collapse; border-spacing:1; border-style:solid;}
+.standardTable tr td {padding:2px 6px;}
+
+.titleName {text-align:center; padding:8px;}
+.titleName span {font-size:26px;font-weight:bolder; color:#444444;}
+
+
+.loginDiv { position:relative; background-image:url(http://bi.multek.com/ws/images/login_head.gif); background-repeat:no-repeat;
+            background-position:top center; width:324px;}
+.loginDivBtm { background-image:url(http://bi.multek.com/ws/images/login_head_btm.gif); 
+               background-position:bottom center; background-repeat:no-repeat;}
+               
+    #tr_quarter {display:none;}
+    #tr_period {display:none;}
+    #channel { list-style:none; margin:0; margin-left:5px; padding:0; height:25px; background-color:#ffffff; width:auto;}
+    #channel li{float:left; padding:0; height:25px; margin-right:0px; background:url(images/tabbar_left_bg.gif) left top no-repeat;}
+    #channel li a{display:block; line-height:21px; padding:0 15px; padding-top:4px; white-space:nowrap;background:url(images/tabbar_right_bg.gif) right top no-repeat;}
+    #channel .selected {float:left; padding:0; height:25px; margin-right:0px; background:url(images/tabbar_left_bg2.gif) left top no-repeat;}
+    #channel .selected a{display:block; font-weight:bold; line-height:21px; padding:0 15px; padding-top:4px; white-space:nowrap;background:url(images/tabbar_right_bg2.gif) right top no-repeat;}
+    
+    #table {border-color:#54A9E9; border-collapse:collapse; border-spacing:1; border-style:solid; width:100%;}
+    #table .head {background:url(images/search_title.gif);}
+    #table .head td{ fong-size:12px; font-weight:bold;}
+    #table td {padding:2px 4px;}
+    
+    .hide {display:none;}
+    
+.stbTbl {position:absolute; left:0px; top:0px; background-color:#ffffff; 
+         border-color:#aaaaaa; border-collapse:collapse; border-spacing:1; border-style:solid;
+         }
+.stbTbl tr {height:18px; vertical-align:top;}
+.stbTbl th {height:18px; padding:0px;}
+.stbTbl td {height:18px; padding:0px; text-align:right;}
+
+
+
+#GridView_btn1_GridView1 tr { font-size:11px;}
+#GridView_btn1_GridView1 td {padding:3px 2px; white-space:nowrap; font-size:12px;}
+#GridView_btn1_GridView1 th {background-color:#FFE28E}
+#GridView_btn1_GridView1 td {padding:3px 2px; white-space:nowrap; font-size:12px;}
+#GridView_btn1_GridView1 th {background-color:#FFE28E;}
+
+#GridView1 tr { font-size:12px;}
+#GridView1 td {padding:3px 2px; white-space:nowrap; font-size:12px;}
+#GridView1 th {background-color:#FFE28E;padding:3px 2px; white-space:nowrap; font-size:12px;}
+
+#gridview1 td {padding:3px 2px; white-space:nowrap; font-size:12px;}
+#gridview1 th {background-color:#FFE28E;padding:3px 2px; white-space:nowrap; font-size:12px;}
+
+.txtbox_small { width:120px; font-size:11px;}
+
+
+
+
+.sortascheaderstyle{
+    background-image: url(http://bi.multek.com/ws/images/sort_desc.png);     
+    background-repeat: no-repeat;
+    background-position: center left;       
+}
+.sortdescheaderstyle{
+    background-image: url(http://bi.multek.com/ws/images/sort_asc.png);     
+    background-repeat: no-repeat;
+    background-position: center left;       
+} 
+.sortholdheaderstyle
+{
+    background-image: url(http://bi.multek.com/ws/images/sort_hold.png);     
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.tablestyle{
+   font-family:arial;
+   font-size: 8pt;
+   border-color: #CDCDCD;
+   color: #3D3D3D;
+}
+.tablestyle td, .tablestyle th{
+   border-color: #CDCDCD;
+}
+.alternatingrowstyle{
+    background-color:#F0F0F6;
+}
+.headerstyle {
+    background-color:#F0F0F6;
+    background-image: url(img/sort_none.gif);
+    background-repeat: no-repeat;
+    background-position: center left;     
+    padding-left: 20px;
+}  
+.headerstyle a{
+   text-decoration:none;
+    color:black;
+   display:block;
+}    
+.rowstyle{
+   background-color: #FFF;
+}
+.rowstyle td, .alternatingrowstyle td {
+   padding: 4px;
+}

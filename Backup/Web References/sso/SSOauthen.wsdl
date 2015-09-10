@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAuthenticationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSSOLoginPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="goBackUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSSOLoginPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSSOLoginPageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSSOLogoutPage">
+        <s:complexType />
+      </s:element>
+      <s:element name="getSSOLogoutPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSSOLogoutPageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="testAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="testAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="testAuthenticationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isLdapUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="domain" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isLdapUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isLdapUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:getAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="getAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:getAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSSOLoginPageSoapIn">
+    <wsdl:part name="parameters" element="tns:getSSOLoginPage" />
+  </wsdl:message>
+  <wsdl:message name="getSSOLoginPageSoapOut">
+    <wsdl:part name="parameters" element="tns:getSSOLoginPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSSOLogoutPageSoapIn">
+    <wsdl:part name="parameters" element="tns:getSSOLogoutPage" />
+  </wsdl:message>
+  <wsdl:message name="getSSOLogoutPageSoapOut">
+    <wsdl:part name="parameters" element="tns:getSSOLogoutPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="testAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:testAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="testAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:testAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="isLdapUserSoapIn">
+    <wsdl:part name="parameters" element="tns:isLdapUser" />
+  </wsdl:message>
+  <wsdl:message name="isLdapUserSoapOut">
+    <wsdl:part name="parameters" element="tns:isLdapUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SSOAuthenSoap">
+    <wsdl:operation name="getAuthentication">
+      <wsdl:input message="tns:getAuthenticationSoapIn" />
+      <wsdl:output message="tns:getAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSSOLoginPage">
+      <wsdl:input message="tns:getSSOLoginPageSoapIn" />
+      <wsdl:output message="tns:getSSOLoginPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSSOLogoutPage">
+      <wsdl:input message="tns:getSSOLogoutPageSoapIn" />
+      <wsdl:output message="tns:getSSOLogoutPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="testAuthentication">
+      <wsdl:input message="tns:testAuthenticationSoapIn" />
+      <wsdl:output message="tns:testAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isLdapUser">
+      <wsdl:input message="tns:isLdapUserSoapIn" />
+      <wsdl:output message="tns:isLdapUserSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SSOAuthenSoap" type="tns:SSOAuthenSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAuthentication">
+      <soap:operation soapAction="http://tempuri.org/getAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSSOLoginPage">
+      <soap:operation soapAction="http://tempuri.org/getSSOLoginPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSSOLogoutPage">
+      <soap:operation soapAction="http://tempuri.org/getSSOLogoutPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testAuthentication">
+      <soap:operation soapAction="http://tempuri.org/testAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isLdapUser">
+      <soap:operation soapAction="http://tempuri.org/isLdapUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SSOAuthenSoap12" type="tns:SSOAuthenSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAuthentication">
+      <soap12:operation soapAction="http://tempuri.org/getAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSSOLoginPage">
+      <soap12:operation soapAction="http://tempuri.org/getSSOLoginPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSSOLogoutPage">
+      <soap12:operation soapAction="http://tempuri.org/getSSOLogoutPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testAuthentication">
+      <soap12:operation soapAction="http://tempuri.org/testAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isLdapUser">
+      <soap12:operation soapAction="http://tempuri.org/isLdapUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SSOAuthen">
+    <wsdl:port name="SSOAuthenSoap" binding="tns:SSOAuthenSoap">
+      <soap:address location="http://bi.multek.com/ws/SSOauthen.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SSOAuthenSoap12" binding="tns:SSOAuthenSoap12">
+      <soap12:address location="http://bi.multek.com/ws/SSOauthen.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

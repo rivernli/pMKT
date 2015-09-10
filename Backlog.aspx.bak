@@ -1,0 +1,226 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Backlog" Codebehind="Backlog.aspx.cs" %>
+
+<%@ Register src="menu.ascx" tagname="menu" tagprefix="uc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Backlog</title>
+    <script type="text/javascript" src="http://bi.multek.com/ws/utility.js" ></script>
+    <script type="text/javascript" src="http://bi.multek.com/ws/calendar.js" ></script>
+    <link href="Stylesheet.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    table td {padding:0px 1px 0px 3px;}
+
+    </style>
+    <script type="text/javascript">
+    
+    function loadpage(){
+        document.getElementById("loading").style.display = "none";
+    }
+    function initload(){
+        document.getElementById("loading").style.display = "block";
+    }
+    var getCumulativeOffset = function (obj) {
+        var left, top;
+        left = top = 0;
+        if (obj.offsetParent) {
+            do {
+                left += obj.offsetLeft;
+                top  += obj.offsetTop;
+            } while (obj = obj.offsetParent);
+        }
+        return {
+            x : left,
+            y : top
+        };
+    };
+
+    function getValue(o,fil)
+    {
+    //return;
+    
+        selection = pg.html.showPanel(null,"selection","auto","auto");
+        selection.style.display = "none";
+        selection.style.whiteSpace='nowrap'; 
+        selection.style.overflow = "auto";
+        selection.innerHTML = "";
+
+    var xy = new getCumulativeOffset(o);
+    selection.style.left = (xy.x) + "px";
+    selection.style.top = (xy.y + 22) + "px";
+    selection.style.width = (o.clientWidth - 4) + "px";            
+
+            
+        selectionObject = o;
+        if(o.value.trim() != "")
+            filtering.getSelection(fil,o.value,setValue);
+        return;
+    }
+    function setValue(obj)
+    {
+        var lst = eval(obj);
+        selection.innerHTML = "";
+        var cls = document.createElement("div");
+        cls.innerHTML = "Close";
+        cls.style.backgroundColor = "blue";
+        cls.style.color = "#ffffff";
+        cls.style.padding = "1px 2px";
+        cls.style.cursor="pointer";
+        cls.onclick = function(){ selection.style.display = "none";}
+        selection.appendChild(cls);
+        for(var i=0; i < lst.length; i++){
+            var div = document.createElement("div");
+            div.innerHTML = lst[i];
+            div.style.cursor = "pointer";
+            div.onclick = function()
+            {
+                selectionObject.value = this.innerText;
+                selection.innerHTML = "";
+                selection.style.display = "none";   
+            }
+            selection.appendChild(div);
+        }
+        selection.style.display = "block";
+    }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Services>
+            <asp:ServiceReference Path="~/filtering.asmx" />
+        </Services>
+        </asp:ScriptManager>
+        <uc1:menu ID="menu1" runat="server" />
+         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+         <ContentTemplate>        
+            <div style="padding:0px 1px;">
+                <table cellspacing="1" cellpadding="1" border="0">
+                <tr>
+                    <td>OEM</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="OEM" runat="server" /></td>
+                    <td>CEM</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="CEM" runat="server" /></td>
+                    <td>Proj#</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="partNumber" runat="server" /></td>
+                    <td>Customer Part#</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="customerPartNo" runat="server" /></td>
+                    <td>Warehouse Code</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="warehouse" runat="server" /></td>
+                </tr>
+                <tr>
+                    <td>Delivery Code</td>
+                    <td><asp:TextBox CssClass="txtbox_small" ID="delCode" runat="server" /></td>
+                    <td>Order Type</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="order_Type" runat="server" /></td>
+                    <td>BaaN SO</td>
+                    <td><asp:TextBox CssClass="txtbox_small" ID="baan_so" runat="server" /></td>
+                    <td>CRF#</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="crfCode" runat="server"  /></td>
+                    <td>Customer Code</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="customerCode" runat="server"  /></td>
+                    
+                </tr>
+                <tr>
+                <td>Site Code</td><td><!-- 沒有巴西的數-->
+                    <asp:DropDownList ID="site" runat="server" 
+                        onselectedindexchanged="site_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:ListItem Text="China" Value="cn" />
+                        <asp:ListItem Text="Brazil" Value="br" Enabled="false" />
+                        <asp:ListItem Text="Germany" Value="de"  />
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="plant" runat="server" Visible="false" />
+                    </td>
+                <td>Cust PO</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="customerPO" runat="server" ></asp:TextBox></td>
+                <td>Start Date</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="startDate" runat="server" /></td>
+                <td>End Date</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="endDate" runat="server" ></asp:TextBox></td>
+                <td>Product Name</td><td>
+                    <asp:TextBox CssClass="txtbox_small" ID="productName" runat="server" ></asp:TextBox></td>
+                </tr>
+                <tr>
+                <td colspan="10" align="right">
+                    <asp:Button ID="search"   OnClientClick="initload()"
+                        runat="server" Text="Search" 
+                        onclick="search_Click" />
+                        <asp:Button ID="downloadExcel" runat="server" Text="Download as Excel" 
+                        onclick="downloadExcel_Click" />                
+                </td>
+                </tr>
+                </table>
+            </div>
+            <div style="display:none" id="loading">
+            <img src="http://bi.multek.com/ws/images/ajax-loader_6.gif" alt="loading...." />
+            </div>
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True"  CssClass="tablestyle"
+                        onpageindexchanging="GridView1_PageIndexChanging" PageSize="30" 
+                        AutoGenerateColumns="False"  AllowSorting="true"
+             onrowdatabound="GridView1_RowDataBound" ondatabound="GridView1_DataBound" 
+                 onsorting="GridView1_Sorting">
+                    <Columns>
+                        <asp:BoundField DataField="oem_name" HeaderText="OEM"  />
+                        <asp:BoundField DataField="cem_name" HeaderText="CEM"  />
+                        <asp:BoundField DataField="part_no" HeaderText="Part#" />
+                        <asp:BoundField DataField="prj_no" HeaderText="Proj#"  />
+                        <asp:BoundField DataField="project_type" HeaderText="Project Type" />
+                        <asp:BoundField DataField="PO_NO" HeaderText="PO No."  />
+                        <asp:BoundField DataField="po_date" HeaderText="PO Date" 
+                            DataFormatString="{0:M/d/yyyy}" />
+                        <asp:BoundField DataField="cust_req_date" DataFormatString="{0:M/d/yyyy}" 
+                            HeaderText="Cust request date" />
+                        <asp:BoundField DataField="Committed_date" DataFormatString="{0:M/d/yyyy}" HeaderText="Committed Date" />
+                        <asp:BoundField DataField="currency" 
+                            HeaderText="Currency" />
+                        <asp:BoundField DataField="unitPrice" HeaderText="Unit Price" 
+                            DataFormatString="{0:n4}">
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="order_qty" HeaderText="Order Qty" 
+                            DataFormatString="{0:#,###}">
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="bklog_qty" DataFormatString="{0:#,###}" 
+                            HeaderText="Backlog Qty">
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="bklog_sqft" DataFormatString="{0:#,###.##}" 
+                            HeaderText="Backlog Sqft">
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="bklog_amt_us" HeaderText="backlog Amount" 
+                            DataFormatString="{0:n}">
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="ship_to_cty" HeaderText="To Country" />
+                        <asp:BoundField DataField="order_type" HeaderText="Order Type" />
+                        <asp:BoundField DataField="sale_type" HeaderText="Sale Type" />
+                        <asp:BoundField DataField="baan_so" HeaderText="BaaN SO" />
+                        <asp:BoundField DataField="site" HeaderText="Site" />
+                        <asp:BoundField DataField="warehouse" HeaderText="warehouse" />
+                        <asp:BoundField DataField="ast_so" HeaderText="CRF#" />
+                        <asp:BoundField DataField="product_name" HeaderText="Product Name" />
+                        <asp:BoundField DataField="cust_code" HeaderText="Cust Code" />
+                        <asp:BoundField DataField="Unit_Panel" HeaderText="Unit/Set" />
+                        <asp:BoundField DataField="del_Code" HeaderText="Delivery Code" />
+                        <asp:BoundField DataField="specialPrice" HeaderText="Special Price" />
+                        <asp:BoundField DataField="plant" HeaderText="Plant" />
+                        <asp:BoundField DataField="ShipmentOnHold" HeaderText="ShipmentOnHold" />
+                    </Columns>
+                </asp:GridView>
+            
+            <asp:Label ID="Label1" runat="server" ForeColor="#CC0000"></asp:Label>
+         </ContentTemplate>
+             <Triggers>
+        <asp:PostBackTrigger ControlID="downloadExcel" />
+     </Triggers>
+        </asp:UpdatePanel>   
+    </div>
+    </form>
+    
+</body>
+</html>
